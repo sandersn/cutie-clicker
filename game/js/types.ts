@@ -1,8 +1,14 @@
 /** Types for the whole project */
+interface CutieClickerInit {
+	(): void, 
+	once: boolean,
+	addAction<T>(action: string, readableAction: string, runFunction: (remover: ActionRemover) => T): T,
+	addScript(action: string, readableAction: string, script: string, library?: boolean): void
+}
 interface CutieClicker {
 	v: string,
 	f: any,
-	init: any,
+	init: CutieClickerInit,
 	getScript: any,
 	util: any,
 	cuties: any,
@@ -14,7 +20,7 @@ interface CutieClicker {
 	stats: any,
 	menu: any
 }
-interface ActionRemover {
+interface ActionRemover { // TODO: Should probably just push this down to where it's used.
 	(): void,
 	msg?: any,
 	internalMsg?: any

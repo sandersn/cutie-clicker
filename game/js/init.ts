@@ -11,7 +11,7 @@ interface Window {
         cc.v = $.trim(data);
     }, 'text');
     // Create init function
-    cc.init = function () {
+    cc.init = <CutieClickerInit>function () {
         if (cc.init.once)
             return;
         cc.init.once = true;
@@ -46,12 +46,12 @@ interface Window {
             }, 'text');
         };
         // This function actually uses pendingActions above
-        function addAction(action, readableAction, runFunction) {
+        function addAction<T>(action: string, readableAction: string, runFunction: (r: ActionRemover) => T): T {
             // When did this start?
             var actionBeginTime = $.now();
             // Create a default function that just returns argument
             runFunction = runFunction || function (arg) {
-                return arg;
+                return <any>arg;
             };
             var actionRemover: ActionRemover = function () {
                 // Remove this function from array
@@ -98,7 +98,7 @@ interface Window {
         // Make this function accessible everywhere
         cc.init.addAction = addAction;
         // Helper function because I do this a million times below
-        function addScript(action, readableAction, script, library?) {
+        function addScript(action: string, readableAction: string, script: string, library?: boolean) {
             addAction(action, readableAction, function (done) {
                 // Decide which getScript to use based on whether or not this is an external library
                 (library ? $ : cc).getScript(script).done(done);
