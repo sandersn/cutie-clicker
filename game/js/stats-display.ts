@@ -1,3 +1,5 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
 // Displays stuff related to stats
 
 !function() {
@@ -9,14 +11,14 @@
       $('#cutie-stats .love').html(cutie.love());
 
       // Display XP
-      var xpPercentage = 0;
+      var xpPercentage: SchemeNumber = SchemeNumber('0');
       // Prevent divide by zero and other weird issues like that
       if(SchemeNumber.fn['>'](cutie.targetxp(), '0')) {
         // Note: This is inexact! Don't save it!
         xpPercentage = SchemeNumber.fn['*']('100', SchemeNumber.fn['/'](cc.stats.excitement(), cutie.targetxp()));
       } else {
         // Assume that targetxp is 0.
-        xpPercentage = '100';
+        xpPercentage = SchemeNumber('100');
       }
       // Cap it at 0 and 100
       xpPercentage = SchemeNumber.fn.max('0', SchemeNumber.fn.min('100', xpPercentage));

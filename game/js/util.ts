@@ -10,7 +10,7 @@
   cc.util.rhanum = function(parent, name, value) {
     if($.type(value) === 'undefined') {
       // Getter
-      var number: string | number = parent[name];
+      var number: string | number | SchemeNumber = parent[name];
 
       if($.type(number) !== 'string') {
         if($.type(number) === 'number') {
@@ -25,7 +25,7 @@
       return LZString.decompress(<string>number);
     } else {
       // Setter
-      var number: string | number = String(value);
+      var number: string | number | SchemeNumber = String(value);
       number = SchemeNumber(value);
       var uncompressedNumber = number = String(number);
       number = LZString.compress(<string>number);

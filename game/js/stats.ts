@@ -1,3 +1,4 @@
+/// <reference path="types.ts"/>
 // This script provides helper stuff to deal with player stats.
 
 !function() {
@@ -77,7 +78,7 @@
   };
 
   // mp cost calculation. Doesn't actually subtract mp
-  cc.stats.mpcostcalc = function(baseCost, negative) {
+  cc.stats.mpcostcalc = function(baseCost: string, negative) {
     // This doesn't actually calculate a percentage, but a fraction.
     // So 1 mp base cost -> 1% mp cost would actually be 1/100.
     var costAsPercentageMult = '1/10000'; // 10,000 mp base cost = 100%
