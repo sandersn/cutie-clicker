@@ -1,8 +1,7 @@
 /// <reference path="../external/jquery.d.ts"/>
 /// <reference path="../external/lz-string.d.ts"/>
+/// <reference path="types.ts"/>
 // This provides general utility stuff.
-declare var cc: any; // TODO: Give a real type.
-declare var SchemeNumber: any; // TODO: Give a real type
 
 !function() {
   cc.util = {};
