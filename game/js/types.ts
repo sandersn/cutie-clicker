@@ -1,4 +1,5 @@
-/** Types for the whole project */
+/// <reference path="../external/jquery.d.ts"/>
+// Types for the whole project
 interface CutieClickerInit {
 	(): void;
 	once: boolean;
@@ -11,10 +12,10 @@ interface Map<T> {
 interface Util {
 	rhanum(parent: Rhaboo, name: string, value?: string | number): string;
 	cssrule<T>(selector: string): (name: string | Map<T>, value?: T) => void;
-	l: (url: string) => string;
-	getcss: any;
-	transferclicks: any;
-	rhainc: any;
+	l(url: string): string;
+	getcss(url: string): JQuery;
+	transferclicks(element: string): void;
+	rhainc(parent: Rhaboo, name: string, inc?: string): void;
 }
 interface CutieClicker {
 	v: string;

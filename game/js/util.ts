@@ -37,7 +37,7 @@
   }
 
   // Create a css rule
-  var memoRuleFunctions = {};
+  var memoRuleFunctions: Map<{<T>(name: string | Map<T>, value?: T): void }> = {};
   cc.util.cssrule = function(selector) {
     if(memoRuleFunctions[selector]) {
       return memoRuleFunctions[selector];
@@ -94,7 +94,7 @@
   }
 
   // Load a css file
-  var loadedCss = {};
+  var loadedCss: Map<JQuery> = {};
   cc.util.getcss = function(url) {
     // Disable caching (add ? or ; on based on whether there's already a ? or not)
     return loadedCss[url] = loadedCss[url] || $('<link rel="stylesheet">').appendTo('head').attr('href', cc.util.l(url));
