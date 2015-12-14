@@ -1,21 +1,22 @@
 {
     "compilerOptions": {
         "preserveConstEnums": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "allowJs": true
     },
     "files": [
-        "game/cuties/77/cutie.js",
-        "game/js/cutie-display.js",
-        "game/js/cuties.js",
-        "game/js/effects.js",
-        "game/js/game.js",
-        "game/js/init.js",
-        "game/js/input.js",
-        "game/js/menu.js",
-        "game/js/stats-display.js",  
-        "game/js/stats-processing.js",
-        "game/js/stats.js",
-        "game/js/update.js",
-        "game/js/util.js"
+        "cuties/77/cutie.js",
+        "js/cutie-display.js",
+        "js/cuties.js",
+        "js/effects.js",
+        "js/game.js",
+        "js/init.js",
+        "js/input.js",
+        "js/menu.js",
+        "js/stats-display.js",  
+        "js/stats-processing.js",
+        "js/stats.js",
+        "js/update.js",
+        "js/util.js"
     ]
 }
