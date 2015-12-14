@@ -4,7 +4,37 @@ interface CutieClickerInit {
 	(): void;
 	once: boolean;
 	addAction<T>(action: string, readableAction: string, runFunction: (remover: ActionRemover) => T): T;
-	addScript(action: string, readableAction: string, script: string, library?: boolean): void
+	addScript(action: string, readableAction: string, script: string, library?: boolean): void;
+}
+type CutieCallback = (cutie: Cutie) => void
+interface Cutie {
+	(dataIndex: number, callback: CutieCallback): void;
+	l(index: number | CutieCallback, callback?: CutieCallback): any;
+	m(index: number | CutieCallback, callback?: CutieCallback): any;
+	r(index: number | CutieCallback, callback?: CutieCallback): any;
+	clearCutieCard: any;
+	proto: any;
+	selection: any;
+	selections: any;
+	listTime: number;
+	list: any;
+	add: any;
+	remove: any;
+	construct: any;
+	cutie: any;
+
+	tick: any;
+	love: any;
+	burstPoints: any;
+	targetxp: any;
+	targetBpMet: any;
+	targetXpMet: any;
+	xpDrain: any;
+	preBurstPause: any;
+	burstSuccess: any;
+	burstFailure: any;
+	glyph: any;
+	rarity: any;
 }
 interface Map<T> {
 	[key: string]: T;
@@ -23,7 +53,7 @@ interface CutieClicker {
 	init: CutieClickerInit;
 	getScript(url: string, callback?: () => void): JQueryXHR;
 	util: Util;
-	cuties: any;
+	cuties: Cutie;
 	loop: any;
 	ls: any;
 	burstStart: any;

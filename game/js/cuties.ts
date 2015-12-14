@@ -10,7 +10,7 @@
 
   // Cutie creation function
   var loadingCuties = {};
-  cc.cuties = function(dataIndex, callback) {
+  cc.cuties = <Cutie>function(dataIndex, callback) {
     var cutieData = cc.cuties.list();
 
     // Check lower bound
@@ -225,10 +225,10 @@
     }
 
     // Left and Right cuties are pretty simple
-    cc.cuties.l = function(index, callback) {
+    cc.cuties.l = function(index: number | CutieCallback, callback: CutieCallback) {
       if($.type(index) === 'function') {
         // Called with only a callback
-        callback = index;
+        callback = <CutieCallback>index;
       } else if($.type(index) !== 'undefined') {
         // Setter
         if(index === null) {
@@ -248,7 +248,7 @@
     cc.cuties.r = function(index, callback) {
       if($.type(index) === 'function') {
         // Called with only a callback
-        callback = index;
+        callback = <CutieCallback>index;
       } else if($.type(index) !== 'undefined') {
         // Setter
         if(index === null) {
@@ -270,7 +270,7 @@
     cc.cuties.m = function(index, callback) {
       if($.type(index) === 'function') {
         // Called with only a callback
-        callback = index;
+        callback = <CutieCallback>index;
       } else if($.type(index) !== 'undefined') {
         // Setter
         if(index === null) {
