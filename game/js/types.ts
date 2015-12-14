@@ -4,14 +4,22 @@ interface CutieClicker {
 	f: any,
 	init: any,
 	getScript: any,
-	util: any
+	util: any,
+	cuties: any,
+	loop: any,
+	ls: any,
+	burstStart: any,
+	burstReady: any,
+	burstEnd: any,
+	stats: any,
+	menu: any
 }
 interface ActionRemover {
 	(): void,
 	msg?: any,
 	internalMsg?: any
 }
-declare var cc: any; // TODO: Make it of type CutieClicker after I fix all the errors in init.ts
+declare var cc: CutieClicker;
 declare interface SchemeNumber {
 	(value: string | number): SchemeNumber
 	toFixed(n: number): number
