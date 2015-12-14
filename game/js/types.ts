@@ -1,15 +1,15 @@
 /// <reference path="../external/jquery.d.ts"/>
 // Types for the whole project
-interface CutieClickerInit {
-	(): void;
-	once: boolean;
-	addAction<T>(action: string, readableAction: string, runFunction: (remover: ActionRemover) => T): T;
-	addScript(action: string, readableAction: string, script: string, library?: boolean): void;
+interface Map<T> {
+	[key: string]: T;
 }
 type CutieCallback = (cutie: Cutie) => void
+interface CutieArray extends Array<any> {
+	write(index: number, options): void
+}
 interface Cutie {
 	(dataIndex: number, callback: CutieCallback): void;
-	l(index: number | CutieCallback, callback?: CutieCallback): any;
+	l(index: number | CutieCallback, callback?: CutieCallback): any; // {}.current[0] (or 1 or 2) ... got to look for writes to data()
 	m(index: number | CutieCallback, callback?: CutieCallback): any;
 	r(index: number | CutieCallback, callback?: CutieCallback): any;
 	clearCutieCard: any;
@@ -17,11 +17,11 @@ interface Cutie {
 	selection: any;
 	selections: any;
 	listTime: number;
-	list: any;
-	add: any;
+	list: () => CutieArray;
+	add(cutie: Cutie, options?: any): number;
 	remove: any;
 	construct: any;
-	cutie: any;
+	cutie: string; // this is some kind of id I think
 
 	tick: any;
 	love: any;
@@ -36,8 +36,32 @@ interface Cutie {
 	glyph: any;
 	rarity: any;
 }
-interface Map<T> {
-	[key: string]: T;
+interface CutieClicker {
+	v: string;
+	f: boolean;
+	init: CutieClickerInit;
+	getScript(url: string, callback?: () => void): JQueryXHR;
+	util: Util;
+	cuties: Cutie;
+	loop: any;
+	ls: Rhaboo;
+	burstStart: any;
+	burstReady: any;
+	burstEnd: any;
+	stats: any;
+	menu: any;
+}
+declare var cc: CutieClicker;
+interface CutieClickerInit {
+	(): void;
+	once: boolean;
+	addAction<T>(action: string, readableAction: string, runFunction: (remover: ActionRemover) => T): T;
+	addScript(action: string, readableAction: string, script: string, library?: boolean): void;
+}
+interface ActionRemover { // TODO: Should probably just push this down to where it's used.
+	(): void,
+	msg?: any,
+	internalMsg?: any
 }
 interface Util {
 	rhanum(parent: Rhaboo, name: string, value?: string | number): string;
@@ -47,27 +71,6 @@ interface Util {
 	transferclicks(element: string): void;
 	rhainc(parent: Rhaboo, name: string, inc?: string): void;
 }
-interface CutieClicker {
-	v: string;
-	f: boolean;
-	init: CutieClickerInit;
-	getScript(url: string, callback?: () => void): JQueryXHR;
-	util: Util;
-	cuties: Cutie;
-	loop: any;
-	ls: any;
-	burstStart: any;
-	burstReady: any;
-	burstEnd: any;
-	stats: any;
-	menu: any;
-}
-interface ActionRemover { // TODO: Should probably just push this down to where it's used.
-	(): void,
-	msg?: any,
-	internalMsg?: any
-}
-declare var cc: CutieClicker;
 declare interface SchemeNumber {
 	(value: string | number): SchemeNumber
 	toFixed(n: number): number
@@ -78,5 +81,8 @@ declare var SchemeNumber: SchemeNumber;
 interface Rhaboo {
 	persistent(name: string): Rhaboo;
 	write(key: string, value: any): void;
+	d: any; // seems to need to be a subclass of Rhaboo
+	v: number;
+	erase(s: string): void;
 }
 declare var Rhaboo: any; // TODO: Real type

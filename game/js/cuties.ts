@@ -4,7 +4,7 @@
 
 !function() {
   // Default starter cutie
-  var starterCutie = {
+  var starterCutie = <Cutie>{
     cutie: '77'
   }
 
@@ -95,7 +95,7 @@
     }
 
     if(!options.cutie) {
-      return false;
+      return undefined;
     }
 
     var newIndex = cc.cuties.list().length;
