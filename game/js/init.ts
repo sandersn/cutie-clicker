@@ -1,8 +1,12 @@
 /// <reference path="types.ts"/>
 /// <reference path="../external/jquery.d.ts"/>
+/// <reference path="../external/ga.d.ts" />
+interface Window {
+    cc: CutieClicker;
+}
 !function () {
     // Create a temporary version variable, then load real one
-    var cc = { v: String($.now()) };
+    var cc: CutieClicker = <CutieClicker>{ v: String($.now()) };
     $.get('version.txt', { _: cc.v }, function (data) {
         cc.v = $.trim(data);
     }, 'text');
@@ -14,7 +18,7 @@
         // Remember when we started
         var initBeginTime = $.now();
         // Keep track of pending tasks
-        var pendingActions = [];
+        var pendingActions: ActionRemover[] = [];
         // Make done no longer run the start check
         var disableActionCheck = false;
         // Switch site to loading mode
@@ -49,7 +53,7 @@
             runFunction = runFunction || function (arg) {
                 return arg;
             };
-            var actionRemover = function () {
+            var actionRemover: ActionRemover = function () {
                 // Remove this function from array
                 pendingActions.splice(pendingActions.indexOf(actionRemover), 1);
                 // Calculate and record how long this action took
@@ -94,7 +98,7 @@
         // Make this function accessible everywhere
         cc.init.addAction = addAction;
         // Helper function because I do this a million times below
-        function addScript(action, readableAction, script, library) {
+        function addScript(action, readableAction, script, library?) {
             addAction(action, readableAction, function (done) {
                 // Decide which getScript to use based on whether or not this is an external library
                 (library ? $ : cc).getScript(script).done(done);
@@ -117,9 +121,9 @@
                         window.localStorage.setItem('cc-instchk', flag);
                         // Watch flag for changes
                         $(window).on('storage', function (ev) {
-                            if (ev.originalEvent.key == 'cc-instchk' && ev.originalEvent.storageArea == window.localStorage) {
+                            if ((<StorageEvent>ev.originalEvent).key == 'cc-instchk' && (<StorageEvent>ev.originalEvent).storageArea == window.localStorage) {
                                 // It changed! Exit!
-                                window.location = 'about:blank';
+                                window.location.href = 'about:blank';
                             }
                         });
                         done();

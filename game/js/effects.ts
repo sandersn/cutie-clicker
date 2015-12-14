@@ -11,6 +11,10 @@ interface Rotation {
   gamma: number;
   beta: number;
 }
+interface RotationEvent extends Event {
+  gamma: number;
+  beta: number;
+}
 
 !function() {
   // Parallax handling
@@ -126,8 +130,8 @@ interface Rotation {
   }
   var lastTilt: Rotation = {gamma: 0, beta: 0};
   $(window).on('deviceorientation', function(ev) {
-    var gamma = (<any>ev.originalEvent).gamma; // TODO: Not sure where these properties are added.
-    var beta = (<any>ev.originalEvent).beta;
+    var gamma = (<RotationEvent>ev.originalEvent).gamma; // TODO: Not sure where these properties are added.
+    var beta = (<RotationEvent>ev.originalEvent).beta;
 
     // Don't do anything if gamma and beta haven't changed much
     if(Math.abs(gamma - lastTilt.gamma) < 3 && Math.abs(beta - lastTilt.beta) < 3) {
