@@ -11,7 +11,7 @@ declare var SchemeNumber: any; // TODO: Give a real type
   cc.util.rhanum = function(parent, name, value) {
     if($.type(value) === 'undefined') {
       // Getter
-      var number = parent[name];
+      var number: string | number = parent[name];
 
       if($.type(number) !== 'string') {
         if($.type(number) === 'number') {
@@ -23,13 +23,13 @@ declare var SchemeNumber: any; // TODO: Give a real type
         return;
       }
 
-      return LZString.decompress(number);
+      return LZString.decompress(<string>number);
     } else {
       // Setter
-      var number = String(value);
+      var number: string | number = String(value);
       number = SchemeNumber(value);
       var uncompressedNumber = number = String(number);
-      number = LZString.compress(number);
+      number = LZString.compress(<string>number);
       parent.write(name, number);
 
       // This returns number before it was compressed
@@ -47,7 +47,7 @@ declare var SchemeNumber: any; // TODO: Give a real type
       $('head').append(element);
       var rules = {};
 
-      function addRule(name, value) {
+      function addRule(name, value?) {
         if(value) {
           var nameValueObject = {};
           nameValueObject[name] = value;
