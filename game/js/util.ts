@@ -4,7 +4,7 @@
 // This provides general utility stuff.
 
 !function() {
-  cc.util = {};
+  cc.util = <Util>{};
 
   // Gets / Sets a LZ compressed SchemeNumber number from Rhaboo
   cc.util.rhanum = function(parent, name, value) {

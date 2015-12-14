@@ -27,8 +27,8 @@
   var scrollAttempts = 10; // 1 second
   function scrollToSaved() {
     if(data.active) {
-      $(window).scrollTop(scrollData().top);
-      if(Math.abs($(window).scrollTop() - scrollData().top) > 1) {
+      $(window).scrollTop(parseInt(scrollData().top));
+      if(Math.abs($(window).scrollTop() - parseInt(scrollData().top)) > 1) {
         // We're not within 1px of our target location.
         if(scrollAttempts > 0) {
           scrollAttempts--;
@@ -109,7 +109,7 @@
   });
 
   // Scroll data fetcher. Only top for now!
-  function scrollData(top?) {
+  function scrollData(top?: number) {
     if(top) {
       cc.util.rhanum(data, 'scrolltop', top);
     }

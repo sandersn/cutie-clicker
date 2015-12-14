@@ -5,12 +5,20 @@ interface CutieClickerInit {
 	addAction<T>(action: string, readableAction: string, runFunction: (remover: ActionRemover) => T): T,
 	addScript(action: string, readableAction: string, script: string, library?: boolean): void
 }
+interface Util {
+	rhanum(parent: Rhaboo, name: string, value?: string | number): string,
+	cssrule: any,
+	l: (url: string) => string,
+	getcss: any,
+	transferclicks: any,
+	rhainc: any,
+}
 interface CutieClicker {
 	v: string,
-	f: any,
+	f: boolean,
 	init: CutieClickerInit,
-	getScript: any,
-	util: any,
+	getScript(url: string, callback?: () => void): JQueryXHR,
+	util: Util,
 	cuties: any,
 	loop: any,
 	ls: any,
@@ -33,4 +41,8 @@ declare interface SchemeNumber {
 }
 declare var SchemeNumber: SchemeNumber;
 
+interface Rhaboo {
+	persistent(name: string): Rhaboo;
+	write(key: string, value: any): void;
+}
 declare var Rhaboo: any; // TODO: Real type
