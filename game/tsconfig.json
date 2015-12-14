@@ -5,18 +5,18 @@
         "allowJs": true
     },
     "files": [
-        "cuties/77/cutie.js",
-        "js/cutie-display.js",
-        "js/cuties.js",
-        "js/effects.js",
-        "js/game.js",
-        "js/init.js",
-        "js/input.js",
-        "js/menu.js",
-        "js/stats-display.js",  
-        "js/stats-processing.js",
-        "js/stats.js",
-        "js/update.js",
-        "js/util.js"
+        "cuties/77/cutie.ts",
+        "js/cutie-display.ts",
+        "js/cuties.ts",
+        "js/effects.ts",
+        "js/game.ts",
+        "js/init.ts",
+        "js/input.ts",
+        "js/menu.ts",
+        "js/stats-display.ts",  
+        "js/stats-processing.ts",
+        "js/stats.ts",
+        "js/update.ts",
+        "js/util.ts"
     ]
 }
