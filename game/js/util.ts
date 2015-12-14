@@ -46,10 +46,10 @@
       $('head').append(element);
       var rules = {};
 
-      function addRule(name, value?) {
+      function addRule<T>(name: string | Map<T>, value?: T): void {
         if(value) {
-          var nameValueObject = {};
-          nameValueObject[name] = value;
+          var nameValueObject: Map<T> = {};
+          nameValueObject[<string>name] = value;
           return addRule(nameValueObject);
         } else {
           // Record changed rules
@@ -63,7 +63,6 @@
 
           // Update css element
           var ruleString = selector + '{';
-          var value;
           $.each(rules, function(rule, value) {
             ruleString += rule + ':' + value + ';';
           });
@@ -71,7 +70,6 @@
           if(element.html() != ruleString) {
             element.html(ruleString);
           }
-          return addRule;
         }
       }
 
