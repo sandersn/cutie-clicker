@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "preserveConstEnums": true,
+        "sourceMap": true
+    },
+    "files": [
+        "game/cuties/77/cutie.js",
+        "game/js/cutie-display.js",
+        "game/js/cuties.js",
+        "game/js/effects.js",
+        "game/js/game.js",
+        "game/js/init.js",
+        "game/js/input.js",
+        "game/js/menu.js",
+        "game/js/stats-display.js",  
+        "game/js/stats-processing.js",
+        "game/js/stats.js",
+        "game/js/update.js",
+        "game/js/util.js"
+    ]
+}
