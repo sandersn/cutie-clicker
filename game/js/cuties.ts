@@ -1,3 +1,5 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
 // This script works with manipulating and accessing cutie data
 
 !function() {
@@ -200,7 +202,6 @@
           default:
             cc.cuties.selections().erase(name);
             return;
-          break;
 
           case 'number':
             reset = [reset];
@@ -319,7 +320,7 @@
 
     // Get cutie card html
     // Doesn't update classes automatically though.
-    function cutieCard(element, defaultClass, cutie) {
+    function cutieCard(element, defaultClass, cutie?) {
       element = $(element);
       defaultClass = defaultClass || '';
 

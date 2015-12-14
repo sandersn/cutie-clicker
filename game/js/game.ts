@@ -1,3 +1,6 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
+/// <reference path="../external/fastclick.d.ts"/>
 !function() {
   cc.util.getcss('css/ui.css');
   cc.util.getcss('css/game.css');
@@ -65,8 +68,6 @@
         delete cc.burstEnd;
         return;
       } else if(cc.ls.d.postBurst) {
-        burstState = cc.ls.d.postBurst;
-
         cc.ls.d.erase('burst');
         cc.ls.d.erase('postBurst');
 

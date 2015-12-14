@@ -1,9 +1,21 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
 // Screen effects!
+interface Parallax {
+  x: number;
+  y: number;
+  gamma?: number;
+  beta?: number;
+}
+interface Rotation {
+  gamma: number;
+  beta: number;
+}
 
 !function() {
   // Parallax handling
   var lastTiltTime = 0;
-  var parallaxData = {x: 0, y: 0};
+  var parallaxData: Parallax = {x: 0, y: 0};
   function parallax(mouseX, mouseY) {
     parallaxData.x = mouseX;
     parallaxData.y = mouseY;
@@ -80,13 +92,15 @@
 
     parallax(mouseX, mouseY);
   });
-  var tiltCenter = {gamma: 0, beta: 0};
-  function tiltAdjustment(orig, orib) {
+  var tiltCenter: Rotation = {gamma: 0, beta: 0};
+  function tiltAdjustment(orig, orib): Parallax {
     // Begin by normalizing.
     var originalGamma = (orig / 30);
     var originalBeta = (orib / 30);
 
     // Adjust for annoying orientation issues
+    let gamma: number;
+    let beta: number;
     if(window.orientation == 90) {
       gamma = originalBeta;
       beta = -originalGamma;
@@ -99,8 +113,8 @@
     }
 
     // Recenter gamma and beta
-    centeredGamma = gamma - tiltCenter.gamma;
-    centeredBeta = beta - tiltCenter.beta;
+    let centeredGamma = gamma - tiltCenter.gamma;
+    let centeredBeta = beta - tiltCenter.beta;
 
     // Perform nudging
     if(centeredGamma < -1) tiltCenter.gamma = gamma + 1;
@@ -110,10 +124,10 @@
 
     return {x: centeredGamma, y: centeredBeta};
   }
-  var lastTilt = {gamma: 0, beta: 0};
+  var lastTilt: Rotation = {gamma: 0, beta: 0};
   $(window).on('deviceorientation', function(ev) {
-    var gamma = ev.originalEvent.gamma;
-    var beta = ev.originalEvent.beta;
+    var gamma = (<any>ev.originalEvent).gamma; // TODO: Not sure where these properties are added.
+    var beta = (<any>ev.originalEvent).beta;
 
     // Don't do anything if gamma and beta haven't changed much
     if(Math.abs(gamma - lastTilt.gamma) < 3 && Math.abs(beta - lastTilt.beta) < 3) {

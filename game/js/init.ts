@@ -1,3 +1,5 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
 !function () {
     // Create a temporary version variable, then load real one
     var cc = { v: String($.now()) };

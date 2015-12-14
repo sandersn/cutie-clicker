@@ -1,3 +1,5 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
 // Handles the menu
 
 !function() {
@@ -41,7 +43,7 @@
 
   // Set up a function to scroll to top
   // affectSave defaults to true.
-  function scrollToDefault(affectSave) {
+  function scrollToDefault(affectSave = true) {
     if(scrollBackTimeout) {
       clearTimeout(scrollBackTimeout);
       scrollBackTimeout = false;
@@ -107,7 +109,7 @@
   });
 
   // Scroll data fetcher. Only top for now!
-  function scrollData(top) {
+  function scrollData(top?) {
     if(top) {
       cc.util.rhanum(data, 'scrolltop', top);
     }
@@ -210,7 +212,7 @@
   }
   cc.menu.state = function(newState) {
     if(newState) {
-      replacementState = $.extend({}, data.state, newState);
+      const replacementState = $.extend({}, data.state, newState);
 
       // Look through state and remove anything that's null or undefined.
       var removeKeys = [];

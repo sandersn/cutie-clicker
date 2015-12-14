@@ -1,3 +1,5 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
 // This script handles displaying cuties and stuff like that.
 
 !function() {
@@ -19,7 +21,7 @@
   });
 
 
-  function cutieCard(element, defaultClass, cutie) {
+  function cutieCard(element, defaultClass, cutie?) {
     if(cutie) {
       return cutie.renderCutieCard(element, defaultClass);
     } else {
@@ -131,7 +133,6 @@
         // Main Cutie Display
         $('#cutie-r').removeClass().addClass('cutie-view');
         $('#cutie-r .cutie-embed').empty();
-
 
         // Cutie Card Display
         cutieCard('#cutie-bar-r', 'cutie-bar-slot');
