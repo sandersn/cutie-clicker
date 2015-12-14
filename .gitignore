@@ -1,2 +1,4 @@
 # Sublime Text stuff
 *.sublime*
+*.js.map
+game/js/*.js
