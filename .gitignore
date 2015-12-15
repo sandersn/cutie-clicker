@@ -1,5 +1,5 @@
 # Sublime Text stuff
 *.sublime*
 *.js.map
-game/js/*.js
+*.js
 game/cuties/77/*.js
