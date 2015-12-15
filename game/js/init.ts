@@ -18,7 +18,7 @@ interface Window {
         // Remember when we started
         var initBeginTime = $.now();
         // Keep track of pending tasks
-        var pendingActions: ActionRemover[] = [];
+        var pendingActions: Action[] = [];
         // Make done no longer run the start check
         var disableActionCheck = false;
         // Switch site to loading mode
@@ -46,14 +46,14 @@ interface Window {
             }, 'text');
         };
         // This function actually uses pendingActions above
-        function addAction<T>(action: string, readableAction: string, runFunction: (r: ActionRemover) => T): T {
+        function addAction<T>(action: string, readableAction: string, runFunction: (r: Action) => T): T {
             // When did this start?
             var actionBeginTime = $.now();
             // Create a default function that just returns argument
             runFunction = runFunction || function (arg) {
                 return <any>arg;
             };
-            var actionRemover: ActionRemover = function () {
+            var actionRemover = <Action>function () {
                 // Remove this function from array
                 pendingActions.splice(pendingActions.indexOf(actionRemover), 1);
                 // Calculate and record how long this action took

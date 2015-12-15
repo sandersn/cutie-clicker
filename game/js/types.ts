@@ -123,13 +123,12 @@ declare var cc: CutieClicker;
 interface CutieClickerInit {
 	(): void;
 	once: boolean;
-	addAction<T>(action: string, readableAction: string, runFunction: (remover: ActionRemover) => T): T;
+	addAction<T>(action: string, readableAction: string, runFunction: (remover: Action) => T): T;
 	addScript(action: string, readableAction: string, script: string, library?: boolean): void;
 }
-interface ActionRemover {
-	(): void,
-	msg?: any,
-	internalMsg?: any
+interface Action extends JQueryPromiseCallback<any> {
+	msg: string;
+	internalMsg: string;
 }
 interface Util {
 	rhanum(parent: Rhaboo, name: string, value?: string | number | SchemeNumber): string;
@@ -151,8 +150,7 @@ declare interface SchemeNumber {
 	(value: string | number): SchemeNumber;
 	toFixed(n: number): number;
 	add(n: number): void;
-	// TODO: enable this after other errors are taken care of
-	fn: SchemeFn; // TODO: Fill in the bundled mathematical functions
+	fn: SchemeFn;
 }
 declare var SchemeNumber: SchemeNumber;
 
