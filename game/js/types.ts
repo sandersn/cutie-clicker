@@ -11,37 +11,51 @@ interface CutieData { // seems redundant
 	current: CutieArray<number>;
 	list: CutieArray<Cutie>;
 	write<T>(name: string, value: T): CutieData;
-	selections: {[s: string]: CutieArray<Cutie>}
+	selections: Map<CutieArray<number>>
 }
-interface Cutie {
-	(dataIndex: number, callback: CutieCallback): void;
-	cutie: string; // this is some kind of id I think
-	l(index: number | CutieCallback, callback?: CutieCallback): number;
-	m(index: number | CutieCallback, callback?: CutieCallback): number;
-	r(index: number | CutieCallback, callback?: CutieCallback): number;
-	clearCutieCard(element: string, defaultClass: string): void;
-	renderCutieCard(element: string, defaultClass: string): void;
-	proto: any;
-	selection(name: string, reset?: any): any;
-	selections: () => {[s: string]: CutieArray<Cutie>};
-	listTime: number;
-	list: () => CutieArray<any>;
-	add(cutie: Cutie, options?: any): number;
-	remove: any;
-	construct: any;
-
+interface CutieProto {
 	tick: any;
 	love: any;
 	burstPoints: any;
 	targetxp: any;
+	targetbp: any;
+	lv: any;
+	bp: any;
+	loveup: any;
 	targetBpMet: any;
 	targetXpMet: any;
 	xpDrain: any;
 	preBurstPause: any;
 	burstSuccess: any;
 	burstFailure: any;
-	glyph: any;
 	rarity: any;
+	renderCutieCard(element: string, defaultClass: string): void;
+	renderCutieClasses: any;
+	index: any;
+	slot: any;
+	selected(name: string): number; 
+	select: any;
+}
+// note: the concept of Cutie vs Cuties is pretty blurry here
+interface Cutie extends CutieProto {
+	(dataIndex: number, callback: CutieCallback): void;
+	cutie: string; // this is some kind of id I think
+	proto: CutieProto;
+	glyph: string; // not sure why this isn't on CutieProto
+
+	selections: () => Map<CutieArray<number>>;
+	list: () => CutieArray<Cutie>;
+	current: () => CutieArray<number>;
+	l(index: number | CutieCallback, callback?: CutieCallback): number;
+	m(index: number | CutieCallback, callback?: CutieCallback): number;
+	r(index: number | CutieCallback, callback?: CutieCallback): number;
+
+	clearCutieCard(element: string, defaultClass: string): void;
+	selection(name: string, reset?: any): any;
+	listTime: number;
+	add(cutie: Cutie, options?: any): number;
+	remove(index: number): boolean;
+	construct(data: Cutie): void;
 }
 interface CutieClicker {
 	v: string;
@@ -49,7 +63,7 @@ interface CutieClicker {
 	init: CutieClickerInit;
 	getScript(url: string, callback?: () => void): JQueryXHR;
 	util: Util;
-	cuties: Cutie;
+	cuties: Cutie; // this doesn't look right -- it's some kind of augmented Cutie prototype cache
 	loop: any;
 	ls: Rhaboo;
 	burstStart: any;

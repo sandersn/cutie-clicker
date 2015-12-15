@@ -117,7 +117,7 @@
   }
 
   // Fix deleted indices
-  function fixDeletedIndex(deletedIndex, indexToFix) {
+  function fixDeletedIndex(deletedIndex: number, indexToFix: number): number {
       if(indexToFix < deletedIndex) {
         // Index to fix comes before deleted index
         return indexToFix;
@@ -153,8 +153,8 @@
     });
 
     // Check selections and do the same thing for each selection
-    $.each(cc.cuties.selections(), function(selectionKey: string, selectionArray: CutieArray<any>) {
-      var toSplice = [];
+    $.each(cc.cuties.selections(), function(selectionKey: string, selectionArray: CutieArray<number>) {
+      var toSplice: number[] = [];
       $.each(selectionArray, function(currentIndex, currentValue) {
         var fixedIndex = fixDeletedIndex(index, currentValue);
         if($.type(fixedIndex) === 'undefined') {
@@ -320,7 +320,7 @@
 
     // Get cutie card html
     // Doesn't update classes automatically though.
-    function cutieCard(elementName: string, defaultClass: string, cutie?) {
+    function cutieCard(elementName: string, defaultClass: string, cutie?: Cutie) {
       var element = $(elementName);
       defaultClass = defaultClass || '';
 
@@ -364,7 +364,7 @@
     }
 
   // Cutie object constructor
-  cc.cuties.construct = function(data) {
+  cc.cuties.construct = function(data: Cutie) {
     this.cutie = data.cutie;
     this.glyph = String.fromCharCode(parseInt('0x' + data.cutie)) + '\ufe0e';
   }
