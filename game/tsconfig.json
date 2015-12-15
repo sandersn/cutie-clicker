@@ -17,6 +17,13 @@
         "js/stats-processing.ts",
         "js/stats.ts",
         "js/update.ts",
-        "js/util.ts"
+        "js/util.ts",
+        "menu/cuties/menu.ts",
+        "menu/home/menu.ts",
+        "menu/items/menu.ts",
+        "menu/loveup/menu.ts",
+        "menu/misc/menu.ts",
+        "menu/store/menu.ts",
+        "menu/tbd/menu.ts"
     ]
 }

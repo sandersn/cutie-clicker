@@ -1,3 +1,4 @@
+/// <reference path="../../js/types.ts"/>
 !function() {
   var lastListUpdate, lastMode;
   var cutieTemplate = function() {
