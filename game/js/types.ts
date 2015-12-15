@@ -96,6 +96,13 @@ interface CutieClickerMenuData extends Rhaboo {
 }
 interface CutieClickerMenuState {
 	mode: string;
+	lastMode: string;
+}
+interface CutieClickerMenuEntry {
+	(element: JQuery): void;
+	stateChanged(state: CutieClickerMenuState): void;
+	draw(now: number): void;
+	open(open: boolean): void;
 }
 interface CutieClickerMenu {
 	(scriptname?: string, state?: CutieClickerMenuState): void;

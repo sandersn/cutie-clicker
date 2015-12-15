@@ -1,3 +1,4 @@
+/// <reference path="../../js/types.ts"/>
 !function() {
   var script = 'home', dir = 'menu/' + script + '/',
   menu = cc.menu[script] = function(element) {

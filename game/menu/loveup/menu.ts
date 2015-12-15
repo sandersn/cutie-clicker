@@ -1,7 +1,7 @@
 /// <reference path="../../js/types.ts"/>
 !function() {
   var script = 'loveup', dir = 'menu/' + script + '/',
-  menu = cc.menu[script] = <any>function(element: JQuery) {
+  menu = cc.menu[script] = <CutieClickerMenuEntry>function(element: JQuery) {
     cc.util.getcss(dir + 'menu.css');
     element.load(cc.util.l(dir + 'menu.html'));
   };
