@@ -9,7 +9,7 @@
   }
 
   // Cutie creation function
-  var loadingCuties = {};
+  var loadingCuties: Map<JQueryDeferred<{}>> = {};
   cc.cuties = <Cutie>function(dataIndex, callback) {
     var cutieData = cc.cuties.list();
 
@@ -174,8 +174,8 @@
 
     // If burst object exists, that needs to be fixed as well, but creating a completely new object, annoyingly
     if(cc.ls.d.burst) {
-      var newBurst = {};
-      $.each(cc.ls.d.burst, function(key, value) {
+      var newBurst: Map<any> = {};
+      $.each(cc.ls.d.burst, function(key: string, value: any) {
         var fixedIndex = fixDeletedIndex(index, Number(key));
         if($.type(fixedIndex) !== 'undefined') {
           // Only bother adding new cutie in if it wasn't removed.
@@ -195,7 +195,7 @@
 
     // Get or set a selection.
     cc.cuties.selection = function(name, reset) {
-      var selection;
+      var selection: CutieArray<number>;
       if(reset) {
         switch($.type(reset)) {
           default:
@@ -311,7 +311,7 @@
   // Display Functions
 
     // Get classes to apply to cutie
-    function cutieClasses(cutie) {
+    function cutieClasses(cutie: Cutie) {
       var classesString = ' cutie-' + cutie.cutie;
       classesString += ' rarity-' + cutie.rarity;
       return classesString;

@@ -1,6 +1,6 @@
 /// <reference path="../../js/types.ts"/>
 !function() {
-  var lastListUpdate, lastMode;
+  var lastListUpdate: number, lastMode: string;
   var cutieTemplate = function() {
     return $();
   }
@@ -55,7 +55,7 @@
     }
   }
 
-  function paneChange(state) {
+  function paneChange(state: CutieClickerMenuState) {
     var paneElement = $('#menu-cuties-pane');
     if(paneElement.length < 1) {
       // Pane doesn't exist for some reason.
@@ -73,7 +73,7 @@
             // Register button handler
             $('#menu-cuties-pane-action-button').click(function() {
               // Delete them all
-              var cutieIndex;
+              var cutieIndex: number;
               // While there's still more cuties to delete
               // Fetch cutie while checking
               while($.type(cutieIndex = cc.cuties.selection('menu').shift()) !== 'undefined') {
@@ -115,7 +115,7 @@
     });
   }
 
-  function listUpdate(state) {
+  function listUpdate(state: CutieClickerMenuState) {
     if(lastListUpdate == cc.cuties.listTime) {
       return;
     } else {
@@ -131,7 +131,7 @@
 
     var listElement = $('<div id="menu-cuties-list">');
 
-    var cutieDeferreds = [];
+    var cutieDeferreds: JQueryDeferred<{}>[] = [];
     var cutiesList = cc.cuties.list();
     $.each(cutiesList, function(index, value) {
       // This allows waiting for all cuties to finish
@@ -157,7 +157,7 @@
     });
   }
 
-  function cutieButtonClick(ev) {
+  function cutieButtonClick(ev: JQueryEventObject) {
     var cutieElement = $(this);
     var cutie = cutieElement.data('cutie');
     // Adding a R here to remind myself that this is a Rhaboo state object

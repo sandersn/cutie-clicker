@@ -155,7 +155,7 @@ interface Window {
     // Register jquery ajax handler for analytics
     $(document).ajaxSend(function (ev, jqxhr, options) {
         // Local root address converter for analytics
-        function localRoot(url) {
+        function localRoot(url: string) {
             // This filters out non-local addresses
             if (url.search(/(?:\w+:)?\/\//i) != -1) {
                 return;

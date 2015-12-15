@@ -105,7 +105,7 @@
   // Same thing for tasks
     // This runs least frequently
     var taskQueue = $.Callbacks('memory unique');
-    function task(func) {
+    function task(func: (now: number) => void) {
       // Add func to queue
       taskQueue.add(func);
     }

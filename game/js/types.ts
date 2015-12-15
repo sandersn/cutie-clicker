@@ -40,6 +40,7 @@ interface CutieProto {
 // note: the concept of Cutie vs Cuties is pretty blurry here
 interface Cutie extends CutieProto {
 	(dataIndex: number, callback: CutieCallback): void;
+	[cutie: string]: any;
 	cutie: string; // this is some kind of id I think
 	proto: CutieProto;
 	glyph: string; // not sure why this isn't on CutieProto
@@ -67,9 +68,9 @@ interface Cutie extends CutieProto {
 	construct(data: Cutie): void;
 }
 interface CutieClickerLoop {
-	task(func: Function): void;
-	tick(func: Function): void;
-	draw(func: Function): void;
+	task(func: (now: number) => void): void;
+	tick(func: (now: number) => void): void;
+	draw(func: (now: number) => void): void;
 	taskInterval: number,
 	tickInterval: number,
 	drawInterval: number
@@ -111,7 +112,7 @@ interface CutieClickerMenu {
 	state(state?: CutieClickerMenuState): CutieClickerMenuState;
 	restate(): void;
 	script(newScript: string): void;
-	// [scriptname: string]: CutieClickerMenu;  NOPE. Not gonna work.
+	[scriptname: string]: any; //  should be CutieClickerMenuEntry probably
 }
 interface CutieClicker {
 	v: string;
@@ -149,7 +150,7 @@ interface Util {
 }
 
 // Rhaboo
-interface Rhaboo {
+interface Rhaboo extends Map<any> {
 	persistent(name: string): Rhaboo;
 	write<T>(key: string, value: T): T;
 	erase(s: string): void;

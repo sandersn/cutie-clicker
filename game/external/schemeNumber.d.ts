@@ -17,7 +17,7 @@ declare interface SchemeFn {
 }
 declare interface SchemeNumber {
 	(value: string | number): SchemeNumber;
-	toString(radix: number);
+	toString(radix: number): string;
 	toFixed(fractionDigits: number): string;
 	toExponential(fractionDigits: number): string;
 	toPrecision(precision: number): string;

@@ -23,7 +23,7 @@
   });
 
   // Set up a thing to scroll back to initial menu position on load
-  var scrollBackTimeout;
+  var scrollBackTimeout: number;
   var scrollAttempts = 10; // 1 second
   function scrollToSaved() {
     if(data.active) {
@@ -37,7 +37,7 @@
         }
       }
     }
-    scrollBackTimeout = false;
+    scrollBackTimeout = undefined;
     scrollAttempts = 10;
   }
 
@@ -45,8 +45,8 @@
   // affectSave defaults to true.
   function scrollToDefault(affectSave = true) {
     if(scrollBackTimeout) {
-      clearTimeout(scrollBackTimeout);
-      scrollBackTimeout = false;
+      clearTimeout(<number>scrollBackTimeout);
+      scrollBackTimeout = undefined;
     }
 
     if(affectSave !== false) {
@@ -193,7 +193,7 @@
   }
 
   // Calls a function on current menu if it exists (does nothing if it doesn't)
-  function callOnMenu(func, args) {
+  function callOnMenu(func: string, args: any[]) {
     if($.type(cc.menu[data.script]) !== 'undefined') {
       if($.isFunction(cc.menu[data.script][func])) {
         return cc.menu[data.script][func].apply(cc.menu[data.script], args);
@@ -215,8 +215,8 @@
       const replacementState = $.extend({}, data.state, newState);
 
       // Look through state and remove anything that's null or undefined.
-      var removeKeys = [];
-      $.each(replacementState, function(key, value) {
+      var removeKeys: string[] = [];
+      $.each(replacementState, function(key: string, value: any) {
         var type = $.type(value);
         if(type === 'null' || type === 'undefined') {
           removeKeys.push(key);

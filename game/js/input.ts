@@ -4,7 +4,7 @@
 
 !function() {
   // Main click handler
-  var recentClickTimeout;
+  var recentClickTimeout: number;
 
   $('#cutie-clicker').on('mousedown touchstart', function(ev) {
     ev.preventDefault();

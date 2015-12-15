@@ -2,7 +2,8 @@
     "compilerOptions": {
         "preserveConstEnums": true,
         "sourceMap": true,
-        "allowJs": true
+        "allowJs": true,
+        "noImplicitAny": true
     },
     "files": [
         "cuties/77/cutie.ts",

@@ -38,13 +38,13 @@
 
   // Create a css rule
   var memoRuleFunctions: Map<{<T>(name: string | Map<T>, value?: T): void }> = {};
-  cc.util.cssrule = function(selector) {
+  cc.util.cssrule = function(selector: string) {
     if(memoRuleFunctions[selector]) {
       return memoRuleFunctions[selector];
     } else {
       var element = $('<style>');
       $('head').append(element);
-      var rules = {};
+      var rules: Map<any> = {};
 
       function addRule<T>(name: string | Map<T>, value?: T): void {
         if(value) {
@@ -53,7 +53,7 @@
           return addRule(nameValueObject);
         } else {
           // Record changed rules
-          $.each(name, function(key, value) {
+          $.each(name, function(key: string, value: T) {
             if(value) {
               rules[key] = value;
             } else {

@@ -30,14 +30,14 @@
   }
 
   // Get classes to apply to cutie
-  function cutieClasses(cutie) {
+  function cutieClasses(cutie: Cutie) {
     return cutie.renderCutieClasses();
   }
 
   // Current (main game) cuties display
   // Cutie cards and main display
-    var cutieM, cutieL, cutieR;
-    var cutieClassM, cutieClassL, cutieClassR;
+    var cutieM: string, cutieL: string, cutieR: string;
+    var cutieClassM: string, cutieClassL: string, cutieClassR: string;
     cc.loop.tick(function() {
       // middle cutie
       // There's always a cutie here, so no need to check for that.

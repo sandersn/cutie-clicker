@@ -20,17 +20,17 @@ interface RotationEvent extends Event {
   // Parallax handling
   var lastTiltTime = 0;
   var parallaxData: Parallax = {x: 0, y: 0};
-  function parallax(mouseX, mouseY) {
+  function parallax(mouseX: number, mouseY: number) {
     parallaxData.x = mouseX;
     parallaxData.y = mouseY;
   }
-  function parallaxTilt(gamma, beta) {
+  function parallaxTilt(gamma: number, beta: number) {
     parallaxData.gamma = gamma;
     parallaxData.beta = beta;
     lastTiltTime = $.now();
   }
   cc.loop.draw(function(now) {
-    var mouseX, mouseY;
+    var mouseX: number, mouseY: number;
 
     // Tilt or mouse?
     if(now > lastTiltTime + 1000) {
@@ -97,7 +97,7 @@ interface RotationEvent extends Event {
     parallax(mouseX, mouseY);
   });
   var tiltCenter: Rotation = {gamma: 0, beta: 0};
-  function tiltAdjustment(orig, orib): Parallax {
+  function tiltAdjustment(orig: number, orib: number): Parallax {
     // Begin by normalizing.
     var originalGamma = (orig / 30);
     var originalBeta = (orib / 30);
