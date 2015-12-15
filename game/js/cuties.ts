@@ -90,7 +90,7 @@
     if($.type(cutie) === 'object') {
       options = cutie;
     } else {
-      options = options || {};
+      options = options || <Cutie>{};
       options.cutie = String(cutie);
     }
 
@@ -194,9 +194,8 @@
   }
 
     // Get or set a selection.
-    cc.cuties.selection = function(name) {
+    cc.cuties.selection = function(name, reset) {
       var selection;
-      var reset = undefined;
       if(reset) {
         switch($.type(reset)) {
           default:

@@ -61,7 +61,7 @@ interface Cutie extends CutieProto {
 	 */
 	selection(name: string, reset?: any): number[];
 	listTime: number;
-	add(cutie: Cutie, options?: any): number;
+	add(cutie: Cutie, options?: Cutie): number;
 	remove(index: number): boolean;
 	construct(data: Cutie): void;
 }
@@ -75,7 +75,7 @@ interface CutieClicker {
 	loop: any;
 	ls: Rhaboo;
 	burstStart: any;
-	burstReady: any;
+	burstReady: boolean;
 	burstEnd: any;
 	stats: any;
 	menu: any;
