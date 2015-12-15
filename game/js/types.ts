@@ -1,4 +1,5 @@
 /// <reference path="../external/jquery.d.ts"/>
+/// <reference path="../external/schemeNumber.d.ts"/>
 // Types for the whole project
 interface Map<T> {
 	[key: string]: T;
@@ -146,23 +147,6 @@ interface Util {
 	transferclicks(element: string): void;
 	rhainc(parent: Rhaboo, name: string, inc?: string): void;
 }
-
-// SchemeNumber
-type SchemeOperator = (...args: (string | SchemeNumber | number)[]) => SchemeNumber;
-interface SchemeFn extends Map<SchemeOperator> {
-	floor: SchemeOperator;
-	ceiling: SchemeOperator;
-	round: SchemeOperator;
-	max: SchemeOperator;
-	min: SchemeOperator;
-}
-declare interface SchemeNumber {
-	(value: string | number): SchemeNumber;
-	toFixed(n: number): number;
-	add(n: number): void;
-	fn: SchemeFn;
-}
-declare var SchemeNumber: SchemeNumber;
 
 // Rhaboo
 interface Rhaboo {
