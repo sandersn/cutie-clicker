@@ -65,6 +65,14 @@ interface Cutie extends CutieProto {
 	remove(index: number): boolean;
 	construct(data: Cutie): void;
 }
+interface CutieClickerLoop {
+	task(func: Function): void;
+	tick(func: Function): void;
+	draw(func: Function): void;
+	taskInterval: number,
+	tickInterval: number,
+	drawInterval: number
+}
 interface CutieClicker {
 	v: string;
 	f: boolean;
@@ -72,7 +80,7 @@ interface CutieClicker {
 	getScript(url: string, callback?: () => void): JQueryXHR;
 	util: Util;
 	cuties: Cutie; // this doesn't look right -- it's some kind of augmented Cutie prototype cache
-	loop: any;
+	loop: CutieClickerLoop;
 	ls: Rhaboo;
 	burstStart: any;
 	burstReady: boolean;

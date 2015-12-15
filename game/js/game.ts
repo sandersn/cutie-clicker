@@ -13,7 +13,7 @@
 
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
-  cc.loop = {
+  cc.loop = <CutieClickerLoop>{
     taskInterval: 60000, // 60 seconds
     tickInterval: 100, // 10fps
     drawInterval: 33 // 30fps
@@ -23,7 +23,7 @@
     // This is for things that don't need to be updated that often.
     // Stuff like processing, but also visual stuff that's mostly handled by css.
     var tickQueue = $.Callbacks('memory unique');
-    function tick(func) {
+    function tick(func: Function) {
       // Add func to queue
       tickQueue.add(func);
     }
@@ -89,7 +89,7 @@
   // Same thing for rendering
     // This is for stuff that actually relies on Javascript to be updated.
     var drawQueue = $.Callbacks('memory unique');
-    function draw(func) {
+    function draw(func: Function) {
       // Add func to queue
       drawQueue.add(func);
     }
