@@ -194,9 +194,9 @@
   }
 
     // Get or set a selection.
-    cc.cuties.selection = function(name, reset) {
+    cc.cuties.selection = function(name) {
       var selection;
-
+      var reset = undefined;
       if(reset) {
         switch($.type(reset)) {
           default:
@@ -525,13 +525,13 @@
       return $.inArray(this.index(), current());
     },
     // Is this cutie selected? Returns index (not boolean).
-    selected: function(name) {
+    selected: function(name: string) {
       return $.inArray(this.index(), cc.cuties.selection(name));
     },
     // Select this cutie
     // If mode is not a boolean, toggles. Otherwise, sets.
     select: function(name, mode) {
-      var index = this.selected(name);
+      var index: number = this.selected(name);
       var selected = index > -1;
 
       if($.type(mode) === 'boolean' && selected === mode) {

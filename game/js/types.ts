@@ -31,10 +31,10 @@ interface CutieProto {
 	rarity: any;
 	renderCutieCard(element: string, defaultClass: string): void;
 	renderCutieClasses: any;
-	index: any;
+	index(): number;
 	slot: any;
 	selected(name: string): number; 
-	select: any;
+	select(name: string, mode: boolean): void;
 }
 // note: the concept of Cutie vs Cuties is pretty blurry here
 interface Cutie extends CutieProto {
@@ -51,7 +51,15 @@ interface Cutie extends CutieProto {
 	r(index: number | CutieCallback, callback?: CutieCallback): number;
 
 	clearCutieCard(element: string, defaultClass: string): void;
-	selection(name: string, reset?: any): any;
+	/**
+	 * for selection, reset is only ever passed as boolean or undefined,
+	 * but the code for selection implies that it could be number or array or array of number too
+	 * selection('foo') -- sets the selection
+	 * selection('foo', true) -- unsets the selection
+	 * selection('foo', [12]) -- sets the selection at a specific index? 
+	 *   I think? This overload is never used.
+	 */
+	selection(name: string, reset?: any): number[];
 	listTime: number;
 	add(cutie: Cutie, options?: any): number;
 	remove(index: number): boolean;
