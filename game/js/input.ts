@@ -1,3 +1,5 @@
+/// <reference path="types.ts"/>
+/// <reference path="../external/jquery.d.ts"/>
 // This script processes general input tasks
 
 !function() {

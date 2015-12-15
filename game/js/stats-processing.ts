@@ -1,3 +1,4 @@
+/// <reference path="types.ts"/>
 // A file for processing stat changes and things like that
 !function() {
   // Run cutie ticks
@@ -69,7 +70,7 @@
     // Require a middle cutie
     cc.cuties.m(function(cutie) {
       // How long has it been since this was last calculated?
-      var sinceThen = now - (cc.util.rhanum(cc.ls.d, 'lastXpDrain') || cc.stats.resetXpDrain());
+      var sinceThen = +now - +(cc.util.rhanum(cc.ls.d, 'lastXpDrain') || cc.stats.resetXpDrain());
       if(sinceThen < 1) return;
 
       // How much does middle cutie wannya drain?

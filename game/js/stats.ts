@@ -2,10 +2,10 @@
 // This script provides helper stuff to deal with player stats.
 
 !function() {
-  cc.stats = {};
+  cc.stats = <CutieClickerStats>{};
 
   // Modify click counter
-  cc.stats.clicks = function(value) {
+  cc.stats.clicks = <{(value?: string): string, add(value: number): string}>function(value) {
     if($.type(value) === 'undefined') {
       // Getter - Default to 0 clicks
       return cc.util.rhanum(cc.ls.d, 'clicks') || cc.util.rhanum(cc.ls.d, 'clicks', 0);
@@ -133,6 +133,6 @@
   // The function that uses this value is actually in stats-processing.js
   cc.stats.resetXpDrain = function(time) {
     time = time || $.now();
-    cc.util.rhanum(cc.ls.d, 'lastXpDrain', time);
+    return cc.util.rhanum(cc.ls.d, 'lastXpDrain', time);
   };
 }();

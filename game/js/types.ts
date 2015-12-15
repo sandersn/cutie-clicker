@@ -24,7 +24,7 @@ interface CutieProto {
 	loveup: any;
 	targetBpMet: any;
 	targetXpMet: any;
-	xpDrain: any;
+	xpDrain(): string;
 	preBurstPause: any;
 	burstSuccess: any;
 	burstFailure: any;
@@ -73,6 +73,21 @@ interface CutieClickerLoop {
 	tickInterval: number,
 	drawInterval: number
 }
+interface CutieClickerStats {
+	xp(value?: string): string;
+	excitement(value?: string): string;
+	mp(value?: string): string;
+	empathy(value?: string): string;
+
+	noxp(): SchemeNumber;
+	xpToMp(amount: string): boolean;
+	mpcostcalc(baseCost: string, negative?: boolean): string;
+	mpcost(baseCost: string, deduct: boolean): boolean;resetXpDrain(time?: number): string;
+	clicks: {
+		(value?: string): string, 
+		add(value: number): string
+	};
+}
 interface CutieClicker {
 	v: string;
 	f: boolean;
@@ -82,10 +97,10 @@ interface CutieClicker {
 	cuties: Cutie; // this doesn't look right -- it's some kind of augmented Cutie prototype cache
 	loop: CutieClickerLoop;
 	ls: Rhaboo;
-	burstStart: any;
+	burstStart: boolean;
 	burstReady: boolean;
-	burstEnd: any;
-	stats: any;
+	burstEnd: number;
+	stats: CutieClickerStats;
 	menu: any;
 }
 declare var cc: CutieClicker;
@@ -109,9 +124,12 @@ interface Util {
 	rhainc(parent: Rhaboo, name: string, inc?: string): void;
 }
 declare interface SchemeNumber {
-	(value: string | number): SchemeNumber
-	toFixed(n: number): number
-	fn: any; // TODO: Fill in the bundled mathematical functions
+	(value: string | number): SchemeNumber;
+	toFixed(n: number): number;
+	add(n: number): void;
+	// TODO: enable this after other errors are taken care of
+	// fn: Map<(l: string | SchemeNumber, r: string | SchemeNumber) => SchemeNumber>; // TODO: Fill in the bundled mathematical functions
+	fn: any;
 }
 declare var SchemeNumber: SchemeNumber;
 
