@@ -4,24 +4,30 @@ interface Map<T> {
 	[key: string]: T;
 }
 type CutieCallback = (cutie: Cutie) => void
-interface CutieArray extends Array<any> {
-	write(index: number, options): void
+interface CutieArray<T> extends Array<T> {
+	write(index: number, options: any): void
+}
+interface CutieData { // seems redundant
+	current: CutieArray<number>;
+	list: CutieArray<Cutie>;
+	write<T>(name: string, value: T): CutieData;
+	selections: {[s: string]: CutieArray<Cutie>}
 }
 interface Cutie {
 	(dataIndex: number, callback: CutieCallback): void;
-	l(index: number | CutieCallback, callback?: CutieCallback): any; // {}.current[0] (or 1 or 2) ... got to look for writes to data()
-	m(index: number | CutieCallback, callback?: CutieCallback): any;
-	r(index: number | CutieCallback, callback?: CutieCallback): any;
+	cutie: string; // this is some kind of id I think
+	l(index: number | CutieCallback, callback?: CutieCallback): number;
+	m(index: number | CutieCallback, callback?: CutieCallback): number;
+	r(index: number | CutieCallback, callback?: CutieCallback): number;
 	clearCutieCard: any;
 	proto: any;
-	selection: any;
-	selections: any;
+	selection(name: string, reset?: any): any;
+	selections: () => {[s: string]: CutieArray<Cutie>};
 	listTime: number;
-	list: () => CutieArray;
+	list: () => CutieArray<any>;
 	add(cutie: Cutie, options?: any): number;
 	remove: any;
 	construct: any;
-	cutie: string; // this is some kind of id I think
 
 	tick: any;
 	love: any;
@@ -58,7 +64,7 @@ interface CutieClickerInit {
 	addAction<T>(action: string, readableAction: string, runFunction: (remover: ActionRemover) => T): T;
 	addScript(action: string, readableAction: string, script: string, library?: boolean): void;
 }
-interface ActionRemover { // TODO: Should probably just push this down to where it's used.
+interface ActionRemover {
 	(): void,
 	msg?: any,
 	internalMsg?: any
@@ -80,7 +86,7 @@ declare var SchemeNumber: SchemeNumber;
 
 interface Rhaboo {
 	persistent(name: string): Rhaboo;
-	write(key: string, value: any): void;
+	write<T>(key: string, value: T): T;
 	d: any; // seems to need to be a subclass of Rhaboo
 	v: number;
 	erase(s: string): void;

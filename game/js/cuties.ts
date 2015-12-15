@@ -71,7 +71,7 @@
   };
 
   // This is a function instead of a variable because we can't access data when this is being run
-  function data() {
+  function data(): CutieData {
     return cc.ls.d.cuties || cc.ls.d.write('cuties', {}).cuties;
   }
 
@@ -153,7 +153,7 @@
     });
 
     // Check selections and do the same thing for each selection
-    $.each(cc.cuties.selections(), function(selectionKey, selectionArray) {
+    $.each(cc.cuties.selections(), function(selectionKey: string, selectionArray: CutieArray<any>) {
       var toSplice = [];
       $.each(selectionArray, function(currentIndex, currentValue) {
         var fixedIndex = fixDeletedIndex(index, currentValue);
@@ -200,7 +200,7 @@
       if(reset) {
         switch($.type(reset)) {
           default:
-            cc.cuties.selections().erase(name);
+            (<any>cc.cuties.selections()).erase(name);
             return;
 
           case 'number':
@@ -209,9 +209,9 @@
           break;
         }
 
-        selection = cc.cuties.selections().write(name, reset)[name];
+        selection = (<any>cc.cuties.selections()).write(name, reset)[name];
       } else {
-        selection = cc.cuties.selections()[name] || cc.cuties.selections().write(name, [])[name];
+        selection = cc.cuties.selections()[name] || (<any>cc.cuties.selections()).write(name, [])[name];
       }
 
       return selection;
