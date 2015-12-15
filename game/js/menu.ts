@@ -4,7 +4,7 @@
 
 !function() {
   // Initialize menu data
-  var data = cc.ls.d.menu || cc.ls.d.write('menu', {}).menu;
+  var data: CutieClickerMenuData = cc.ls.d.menu || cc.ls.d.write('menu', {}).menu;
 
   // Menu opening
   $('#cutie-bar-m').click(function() {
@@ -131,7 +131,7 @@
 
   // Menu switcher
   // Based off of cutie function
-  cc.menu = function(scriptname, state) {
+  cc.menu = <CutieClickerMenu>function(scriptname, state) {
     if($.type(scriptname) === 'undefined' && $.type(data.script) !== 'undefined') {
       // Keep current script
       scriptname = data.script;

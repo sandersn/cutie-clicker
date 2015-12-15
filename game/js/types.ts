@@ -88,6 +88,22 @@ interface CutieClickerStats {
 		add(value: number): string
 	};
 }
+interface CutieClickerMenuData extends Rhaboo {
+	menu: CutieClickerMenu;
+	active: boolean;
+	script: string;
+	state: CutieClickerMenuState;
+}
+interface CutieClickerMenuState {
+}
+interface CutieClickerMenu {
+	(scriptname?: string, state?: CutieClickerMenuState): void;
+	open(open?: boolean, force?: boolean): void;
+	state(state: CutieClickerMenuState): CutieClickerMenuState;
+	restate(): void;
+	script(newScript: string): void;
+	// [scriptname: string]: CutieClickerMenu;  NOPE. Not gonna work.
+}
 interface CutieClicker {
 	v: string;
 	f: boolean;
@@ -101,7 +117,7 @@ interface CutieClicker {
 	burstReady: boolean;
 	burstEnd: number;
 	stats: CutieClickerStats;
-	menu: any;
+	menu: CutieClickerMenu;
 }
 declare var cc: CutieClicker;
 interface CutieClickerInit {
