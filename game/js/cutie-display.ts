@@ -21,7 +21,7 @@
   });
 
 
-  function cutieCard(element, defaultClass, cutie?) {
+  function cutieCard(element: string, defaultClass: string, cutie?: Cutie) {
     if(cutie) {
       return cutie.renderCutieCard(element, defaultClass);
     } else {

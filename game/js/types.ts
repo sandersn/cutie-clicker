@@ -19,7 +19,8 @@ interface Cutie {
 	l(index: number | CutieCallback, callback?: CutieCallback): number;
 	m(index: number | CutieCallback, callback?: CutieCallback): number;
 	r(index: number | CutieCallback, callback?: CutieCallback): number;
-	clearCutieCard: any;
+	clearCutieCard(element: string, defaultClass: string): void;
+	renderCutieCard(element: string, defaultClass: string): void;
 	proto: any;
 	selection(name: string, reset?: any): any;
 	selections: () => {[s: string]: CutieArray<Cutie>};

@@ -320,8 +320,8 @@
 
     // Get cutie card html
     // Doesn't update classes automatically though.
-    function cutieCard(element, defaultClass, cutie?) {
-      element = $(element);
+    function cutieCard(elementName: string, defaultClass: string, cutie?) {
+      var element = $(elementName);
       defaultClass = defaultClass || '';
 
       if(element.length < 1) {
