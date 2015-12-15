@@ -7,7 +7,7 @@
   var backButtonTemplate = cutieTemplate;
 
   var script = 'cuties', dir = 'menu/' + script + '/',
-  menu = cc.menu[script] = function(element, state) {
+  menu = cc.menu[script] = <any>function(element: JQuery, state: CutieClickerMenuState) {
     cc.util.getcss(dir + 'menu.css');
     element.load(cc.util.l(dir + 'menu.html'), function() {
       // Create a template cutie card

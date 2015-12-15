@@ -140,10 +140,10 @@
     } else if($.type(scriptname) === 'undefined') {
       // No script name defined, so set it to default
       scriptname = 'home';
-      state = state || {};
+      state = state || <CutieClickerMenuState>{};
     } else {
       // Script name is defined, but make sure state is too.
-      state = state || {};
+      state = state || <CutieClickerMenuState>{};
     }
 
     if(callOnMenu('exit', [scriptname, state]) === false) {
@@ -236,7 +236,7 @@
   }
   // Let state handle what to pass stateChanged
   cc.menu.restate = function() {
-    cc.menu.state({});
+    cc.menu.state(<CutieClickerMenuState>{});
   }
 
   // Easy to use function to open / close / toggle menu

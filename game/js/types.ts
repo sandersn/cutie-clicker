@@ -29,7 +29,7 @@ interface CutieProto {
 	bp(value?: SchemeNumber): string;
 	burstPoints(value?: SchemeNumber): string;
 	targetBpMet(value?: string): SchemeNumber;
-	renderCutieCard(element: string, defaultClass: string): void;
+	renderCutieCard(element: string | JQuery, defaultClass: string): void;
 	renderCutieClasses(): string;
 	index(): number;
 	slot(): number;
@@ -47,7 +47,7 @@ interface Cutie extends CutieProto {
 	list: () => CutieArray<Cutie>;
 	current: () => CutieArray<number>;
 	l(index: number | CutieCallback, callback?: CutieCallback): number;
-	m(index: number | CutieCallback, callback?: CutieCallback): number;
+	m(index?: number | CutieCallback, callback?: CutieCallback): number;
 	r(index: number | CutieCallback, callback?: CutieCallback): number;
 
 	clearCutieCard(element: string, defaultClass: string): void;
@@ -59,9 +59,9 @@ interface Cutie extends CutieProto {
 	 * selection('foo', [12]) -- sets the selection at a specific index? 
 	 *   I think? This overload is never used.
 	 */
-	selection(name: string, reset?: any): number[];
+	selection(name: string, reset?: any): CutieArray<number>;
 	listTime: number;
-	add(cutie: Cutie, options?: Cutie): number;
+	add(cutie: Cutie | string, options?: Cutie): number;
 	remove(index: number): boolean;
 	construct(data: Cutie): void;
 }
@@ -95,11 +95,12 @@ interface CutieClickerMenuData extends Rhaboo {
 	state: CutieClickerMenuState;
 }
 interface CutieClickerMenuState {
+	mode: string;
 }
 interface CutieClickerMenu {
 	(scriptname?: string, state?: CutieClickerMenuState): void;
 	open(open?: boolean, force?: boolean): void;
-	state(state: CutieClickerMenuState): CutieClickerMenuState;
+	state(state?: CutieClickerMenuState): CutieClickerMenuState;
 	restate(): void;
 	script(newScript: string): void;
 	// [scriptname: string]: CutieClickerMenu;  NOPE. Not gonna work.
@@ -138,6 +139,8 @@ interface Util {
 	transferclicks(element: string): void;
 	rhainc(parent: Rhaboo, name: string, inc?: string): void;
 }
+
+// SchemeNumber
 type SchemeOperator = (...args: (string | SchemeNumber | number)[]) => SchemeNumber;
 interface SchemeFn extends Map<SchemeOperator> {
 	floor: SchemeOperator;
@@ -154,6 +157,7 @@ declare interface SchemeNumber {
 }
 declare var SchemeNumber: SchemeNumber;
 
+// Rhaboo
 interface Rhaboo {
 	persistent(name: string): Rhaboo;
 	write<T>(key: string, value: T): T;

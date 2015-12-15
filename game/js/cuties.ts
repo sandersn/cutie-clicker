@@ -88,7 +88,7 @@
   cc.cuties.add = function(cutie, options) {
     // allow passing in only options
     if($.type(cutie) === 'object') {
-      options = cutie;
+      options = <Cutie>cutie;
     } else {
       options = options || <Cutie>{};
       options.cutie = String(cutie);
@@ -319,7 +319,7 @@
 
     // Get cutie card html
     // Doesn't update classes automatically though.
-    function cutieCard(elementName: string, defaultClass: string, cutie?: Cutie) {
+    function cutieCard(elementName: string | JQuery, defaultClass: string, cutie?: Cutie) {
       var element = $(elementName);
       defaultClass = defaultClass || '';
 
