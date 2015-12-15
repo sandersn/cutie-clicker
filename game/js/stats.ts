@@ -5,7 +5,7 @@
   cc.stats = <CutieClickerStats>{};
 
   // Modify click counter
-  cc.stats.clicks = <{(value?: string): string, add(value: number): string}>function(value) {
+  cc.stats.clicks = <{(value?: SchemeNumber): string, add(value: number): string}>function(value) {
     if($.type(value) === 'undefined') {
       // Getter - Default to 0 clicks
       return cc.util.rhanum(cc.ls.d, 'clicks') || cc.util.rhanum(cc.ls.d, 'clicks', 0);
@@ -83,7 +83,7 @@
     // So 1 mp base cost -> 1% mp cost would actually be 1/100.
     var costAsPercentageMult = '1/10000'; // 10,000 mp base cost = 100%
     var baseCost = String(baseCost);
-    var percentageCost = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*'](baseCost, costAsPercentageMult, cc.stats.empathy())));
+    var percentageCost = SchemeNumber.fn.ceiling(SchemeNumber.fn['*'](baseCost, costAsPercentageMult, cc.stats.empathy()));
 
     // Percentage cost can't be greater than 100%
     percentageCost = SchemeNumber.fn.min(percentageCost, cc.stats.empathy());

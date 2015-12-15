@@ -74,17 +74,17 @@ interface CutieClickerLoop {
 	drawInterval: number
 }
 interface CutieClickerStats {
-	xp(value?: string): string;
-	excitement(value?: string): string;
-	mp(value?: string): string;
-	empathy(value?: string): string;
+	xp(value?: string | SchemeNumber): string;
+	excitement(value?: string | SchemeNumber): string;
+	mp(value?: string | SchemeNumber): string;
+	empathy(value?: SchemeNumber): string;
 
 	noxp(): SchemeNumber;
 	xpToMp(amount: string): boolean;
 	mpcostcalc(baseCost: string, negative?: boolean): string;
 	mpcost(baseCost: string, deduct: boolean): boolean;resetXpDrain(time?: number): string;
 	clicks: {
-		(value?: string): string, 
+		(value?: SchemeNumber): string, 
 		add(value: number): string
 	};
 }
@@ -132,28 +132,35 @@ interface ActionRemover {
 	internalMsg?: any
 }
 interface Util {
-	rhanum(parent: Rhaboo, name: string, value?: string | number): string;
+	rhanum(parent: Rhaboo, name: string, value?: string | number | SchemeNumber): string;
 	cssrule<T>(selector: string): (name: string | Map<T>, value?: T) => void;
 	l(url: string): string;
 	getcss(url: string): JQuery;
 	transferclicks(element: string): void;
 	rhainc(parent: Rhaboo, name: string, inc?: string): void;
 }
+type SchemeOperator = (...args: (string | SchemeNumber | number)[]) => SchemeNumber;
+interface SchemeFn extends Map<SchemeOperator> {
+	floor: SchemeOperator;
+	ceiling: SchemeOperator;
+	round: SchemeOperator;
+	max: SchemeOperator;
+	min: SchemeOperator;
+}
 declare interface SchemeNumber {
 	(value: string | number): SchemeNumber;
 	toFixed(n: number): number;
 	add(n: number): void;
 	// TODO: enable this after other errors are taken care of
-	// fn: Map<(l: string | SchemeNumber, r: string | SchemeNumber) => SchemeNumber>; // TODO: Fill in the bundled mathematical functions
-	fn: any;
+	fn: SchemeFn; // TODO: Fill in the bundled mathematical functions
 }
 declare var SchemeNumber: SchemeNumber;
 
 interface Rhaboo {
 	persistent(name: string): Rhaboo;
 	write<T>(key: string, value: T): T;
+	erase(s: string): void;
 	d: any; // seems to need to be a subclass of Rhaboo
 	v: number;
-	erase(s: string): void;
 }
-declare var Rhaboo: any; // TODO: Real type
+declare var Rhaboo: Rhaboo;

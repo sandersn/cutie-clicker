@@ -26,7 +26,7 @@
     } else {
       // Setter
       var number: string | number | SchemeNumber = String(value);
-      number = SchemeNumber(value);
+      number = SchemeNumber(<string>value);
       var uncompressedNumber = number = String(number);
       number = LZString.compress(<string>number);
       parent.write(name, number);
@@ -118,9 +118,9 @@
 
     // Calculate increment
     var value = cc.util.rhanum(parent, name) || '0';
-    value = SchemeNumber.fn['+'](value, inc);
+    var schemeValue = SchemeNumber.fn['+'](value, inc);
 
     // Save value
-    cc.util.rhanum(parent, name, value);
+    cc.util.rhanum(parent, name, schemeValue);
   }
 }();
