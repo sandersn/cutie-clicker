@@ -10,29 +10,29 @@ interface CutieArray<T> extends Array<T> {
 interface CutieData { // seems redundant
 	current: CutieArray<number>;
 	list: CutieArray<Cutie>;
-	write<T>(name: string, value: T): CutieData;
 	selections: Map<CutieArray<number>>
+	write<T>(name: string, value: T): CutieData;
 }
 interface CutieProto {
-	tick: any;
-	love: any;
-	burstPoints: any;
-	targetxp: any;
-	targetbp: any;
-	lv: any;
-	bp: any;
-	loveup: any;
-	targetBpMet: any;
-	targetXpMet: any;
+	rarity: number;
+	targetbp(): string;
+	preBurstPause(): number;
 	xpDrain(): string;
-	preBurstPause: any;
-	burstSuccess: any;
-	burstFailure: any;
-	rarity: any;
+	tick(now: number): void;
+	targetxp(): string;
+	burstSuccess(): number;
+	burstFailure(): number;
+	lv(value: string): string;
+	love(value?: SchemeNumber): string;
+	targetXpMet(value?: string): SchemeNumber;
+	loveup(): void;
+	bp(value?: SchemeNumber): string;
+	burstPoints(value?: SchemeNumber): string;
+	targetBpMet(value?: string): SchemeNumber;
 	renderCutieCard(element: string, defaultClass: string): void;
-	renderCutieClasses: any;
+	renderCutieClasses(): string;
 	index(): number;
-	slot: any;
+	slot(): number;
 	selected(name: string): number; 
 	select(name: string, mode: boolean): void;
 }
@@ -114,7 +114,7 @@ interface CutieClicker {
 	loop: CutieClickerLoop;
 	ls: Rhaboo;
 	burstStart: boolean;
-	burstReady: boolean;
+	burstReady: boolean | SchemeNumber; // TODO: Fix this
 	burstEnd: number;
 	stats: CutieClickerStats;
 	menu: CutieClickerMenu;
