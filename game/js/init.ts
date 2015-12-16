@@ -11,7 +11,7 @@ interface Window {
         cc.v = $.trim(data);
     }, 'text');
     // Create init function
-    cc.init = <CutieClickerInit>function () {
+    cc.init = <Init>function () {
         if (cc.init.once)
             return;
         cc.init.once = true;

@@ -4,7 +4,7 @@
 
 !function() {
   // Initialize menu data
-  var data: CutieClickerMenuData = cc.ls.d.menu || cc.ls.d.write('menu', {}).menu;
+  var data: MenuData = cc.ls.d.menu || cc.ls.d.write('menu', {}).menu;
 
   // Menu opening
   $('#cutie-bar-m').click(function() {
@@ -131,7 +131,7 @@
 
   // Menu switcher
   // Based off of cutie function
-  cc.menu = <CutieClickerMenu>function(scriptname, state) {
+  cc.menu = <Menu>function(scriptname, state) {
     if($.type(scriptname) === 'undefined' && $.type(data.script) !== 'undefined') {
       // Keep current script
       scriptname = data.script;
@@ -140,10 +140,10 @@
     } else if($.type(scriptname) === 'undefined') {
       // No script name defined, so set it to default
       scriptname = 'home';
-      state = state || <CutieClickerMenuState>{};
+      state = state || <MenuState>{};
     } else {
       // Script name is defined, but make sure state is too.
-      state = state || <CutieClickerMenuState>{};
+      state = state || <MenuState>{};
     }
 
     if(callOnMenu('exit', [scriptname, state]) === false) {
@@ -236,7 +236,7 @@
   }
   // Let state handle what to pass stateChanged
   cc.menu.restate = function() {
-    cc.menu.state(<CutieClickerMenuState>{});
+    cc.menu.state(<MenuState>{});
   }
 
   // Easy to use function to open / close / toggle menu

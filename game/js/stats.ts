@@ -2,7 +2,7 @@
 // This script provides helper stuff to deal with player stats.
 
 !function() {
-  cc.stats = <CutieClickerStats>{};
+  cc.stats = <Stats>{};
 
   // Modify click counter
   cc.stats.clicks = <{(value?: SchemeNumber): string, add(value: number): string}>function(value) {

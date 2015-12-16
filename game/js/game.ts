@@ -13,7 +13,7 @@
 
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
-  cc.loop = <CutieClickerLoop>{
+  cc.loop = <Loop>{
     taskInterval: 60000, // 60 seconds
     tickInterval: 100, // 10fps
     drawInterval: 33 // 30fps

@@ -4,7 +4,7 @@
 interface Map<T> {
 	[key: string]: T;
 }
-type CutieCallback = (cutie: Cutie) => void
+type CutieCallback = (cutie: Cutie) => void;
 interface CutieArray<T> extends Array<T> {
 	write(index: number, options: any): void
 }
@@ -67,7 +67,7 @@ interface Cutie extends CutieProto {
 	remove(index: number): boolean;
 	construct(data: Cutie): void;
 }
-interface CutieClickerLoop {
+interface Loop {
 	task(func: (now: number) => void): void;
 	tick(func: (now: number) => void): void;
 	draw(func: (now: number) => void): void;
@@ -75,7 +75,7 @@ interface CutieClickerLoop {
 	tickInterval: number,
 	drawInterval: number
 }
-interface CutieClickerStats {
+interface Stats {
 	xp(value?: string | SchemeNumber): string;
 	excitement(value?: string | SchemeNumber): string;
 	mp(value?: string | SchemeNumber): string;
@@ -84,32 +84,33 @@ interface CutieClickerStats {
 	noxp(): SchemeNumber;
 	xpToMp(amount: string): boolean;
 	mpcostcalc(baseCost: string, negative?: boolean): string;
-	mpcost(baseCost: string, deduct: boolean): boolean;resetXpDrain(time?: number): string;
+	mpcost(baseCost: string, deduct: boolean): boolean;
+	resetXpDrain(time?: number): string;
 	clicks: {
 		(value?: SchemeNumber): string, 
 		add(value: number): string
 	};
 }
-interface CutieClickerMenuData extends Rhaboo {
-	menu: CutieClickerMenu;
+interface MenuData extends Rhaboo {
+	menu: Menu;
 	active: boolean;
 	script: string;
-	state: CutieClickerMenuState;
+	state: MenuState;
 }
-interface CutieClickerMenuState {
+interface MenuState {
 	mode: string;
 	lastMode: string;
 }
-interface CutieClickerMenuEntry {
+interface MenuEntry {
 	(element: JQuery): void;
-	stateChanged(state: CutieClickerMenuState): void;
+	stateChanged(state: MenuState): void;
 	draw(now: number): void;
 	open(open: boolean): void;
 }
-interface CutieClickerMenu {
-	(scriptname?: string, state?: CutieClickerMenuState): void;
+interface Menu {
+	(scriptname?: string, state?: MenuState): void;
 	open(open?: boolean, force?: boolean): void;
-	state(state?: CutieClickerMenuState): CutieClickerMenuState;
+	state(state?: MenuState): MenuState;
 	restate(): void;
 	script(newScript: string): void;
 	[scriptname: string]: any; //  should be CutieClickerMenuEntry probably
@@ -117,20 +118,20 @@ interface CutieClickerMenu {
 interface CutieClicker {
 	v: string;
 	f: boolean;
-	init: CutieClickerInit;
+	init: Init;
 	getScript(url: string, callback?: () => void): JQueryXHR;
 	util: Util;
 	cuties: Cutie; // this doesn't look right -- it's some kind of augmented Cutie prototype cache
-	loop: CutieClickerLoop;
+	loop: Loop;
 	ls: Rhaboo;
 	burstStart: boolean;
 	burstReady: boolean | SchemeNumber; // TODO: Fix this
 	burstEnd: number;
-	stats: CutieClickerStats;
-	menu: CutieClickerMenu;
+	stats: Stats;
+	menu: Menu;
 }
 declare var cc: CutieClicker;
-interface CutieClickerInit {
+interface Init {
 	(): void;
 	once: boolean;
 	addAction<T>(action: string, readableAction: string, runFunction: (remover: Action) => T): T;
